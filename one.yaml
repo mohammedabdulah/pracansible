@@ -46,3 +46,15 @@
     loop:
     - git
     - nginx
+- name: sixth yaml
+  become: yes
+  hosts: localhost
+  tasks: 
+  - name: enabling several apps
+    ansible.builtin.service:
+      name: "{{item}}"
+      state: started
+    loop:
+    - git
+    - nginx
+

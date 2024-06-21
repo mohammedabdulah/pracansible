@@ -1,0 +1,48 @@
+- name: first yaml
+  become: yes
+  hosts: localhost
+  tasks: 
+  - name: printing something
+    ansible.builtin.debug:
+      msg: "print some thing yaar"
+  - name: printing with variables
+    ansible.builtin.debug:
+      msg: "print the value of nothing is {{nothing}}"
+- name: second yaml
+  become: yes
+  hosts: localhost
+  vars:
+  - nakka : bokka
+  - lakka: jakka
+  - tokka: rokka
+  tasks: 
+  - name: print using variables
+    ansible.builtin.debug:
+      msg: "hi, this is {{lakka}} from {{tokka}}, i am fond of {{nakka}}"
+- name: third yaml
+  become: yes
+  hosts: localhost
+  tasks: 
+  - name: installing nginx
+    ansible.builtin.package:
+      name: nginx
+      state: present
+- name: fourth yaml
+  become: yes
+  hosts: localhost
+  tasks: 
+  - name: deleting nginx
+    ansible.builtin.package:
+      name: nginx
+      state: absent
+- name: fifth yaml
+  become: yes
+  hosts: localhost
+  tasks: 
+  - name: installing several apps
+    ansible.builtin.package:
+      name: {{item}}
+      state: present
+    loop:
+    - git
+    - nginx
